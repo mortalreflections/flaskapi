@@ -1,2 +1,2 @@
-from new import app
+from new.py import app
 app=app
