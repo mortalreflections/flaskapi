@@ -1,3 +1,3 @@
-from flask_qa import app
+from flask  import app
 
 app=app
