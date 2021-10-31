@@ -1,9 +1,6 @@
 from flask import Flask, request, jsonify, make_response
 from flask_sqlalchemy import SQLAlchemy, Model
-# from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.orm import declarative_base
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_marshmallow import Marshmallow
 from functools import wraps
 import uuid,os
 import jwt 
