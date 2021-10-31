@@ -11,7 +11,7 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'thisissecret'
 base_dir=os.path.abspath(os.path.dirname(__file__))
-app.config['DATABASE_URL'] = 'sqlite:///' +os.path.join(base_dir , "dbnew.sqlite")
+app.config['DATABASE_URL'] = 'postgres://tiejgxrtlhnflm:82c669fc284a247e484946555a56d423a52786a934c24e6a950623bb12f1f07f@ec2-34-200-161-87.compute-1.amazonaws.com:5432/damb2om1crqgv2' +os.path.join(base_dir , "dbnew.sqlite")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]= True
 
 db = SQLAlchemy(app)
