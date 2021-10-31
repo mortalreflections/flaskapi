@@ -8,15 +8,12 @@ from datetime import datetime as dt ,timedelta
 
 
 app = Flask(__name__)
-
+db = SQLAlchemy(app)
 app.config['SECRET_KEY'] = 'thisissecret'
 base_dir=os.path.abspath(os.path.dirname(__file__))
 app.config['DATABASE_URL'] = 'sqlite:///' +os.path.join(base_dir , "dbnew.sqlite")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]= False
 
-
-db = SQLAlchemy(app)
-# Base = declarative_base()
 
 class Advisor(db.Model):
     __tablename__="Advisor"
@@ -152,7 +149,6 @@ def get_advisor_list(user_id):
 
      if not current_user:
         return jsonify ( { "msg" : " no user found"})
-
     
      advisors=Advisor.query.all()
      output=[]
@@ -165,6 +161,7 @@ def get_advisor_list(user_id):
 
      return jsonify ({ "advisors" : output })   
 
+# advisor_booking
 @app.route("/user/<user_id>/advisor/<advisor_id>", methods=["POST"])
 def book_a_call(user_id,advisor_id): 
 
@@ -199,11 +196,8 @@ def book_a_call(user_id,advisor_id):
 def booked_call_list(user_id):
     current_user= User.query.filter_by(id=user_id).first()
 
-    # bookings1=Calls.query.filter_by(user_id=current_user.id).all()
     bookings=db.session.query(Advisor,Calls).outerjoin(Calls, Advisor.id == Calls.advisor_id).filter(Calls.user_id==current_user.id)
-    # bookings1=str(bookings)
-
-
+   
     output=[]
     for booking in bookings:
         if booking[1]:
