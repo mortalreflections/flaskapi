@@ -53,8 +53,8 @@ class Calls(db.Model):
 # def __repr__(self):
 #             return "Calls('{}','{}','{}')".format(self.user_id,self.advisor_id,self.booking_time)     
 
-# db.create_all()
-# db.session.commit()
+db.create_all()
+db.session.commit()
 
 def token_required(f):
     @wraps(f)
