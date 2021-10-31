@@ -8,12 +8,13 @@ from datetime import datetime as dt ,timedelta
 
 
 app = Flask(__name__)
-db = SQLAlchemy(app)
+
 app.config['SECRET_KEY'] = 'thisissecret'
 base_dir=os.path.abspath(os.path.dirname(__file__))
 app.config['DATABASE_URL'] = 'sqlite:///' +os.path.join(base_dir , "dbnew.sqlite")
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]= False
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]= True
 
+db = SQLAlchemy(app)
 
 class Advisor(db.Model):
     __tablename__="Advisor"
